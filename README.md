@@ -1,3 +1,3 @@
-# 3odaysofcode
+# 30daysofcode
 30 days of code in C language 
 Hackerrank solution
