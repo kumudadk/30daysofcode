@@ -1,0 +1,17 @@
+int getHeight(Node* root){
+  //Write your code here
+if (root == NULL){
+        return -1;
+    }
+    else{
+        int h_left = getHeight(root->left), h_right = getHeight(root->right);
+        if (h_left > h_right){
+            return h_left + 1;
+        }
+        else
+        {
+            return h_right + 1;
+        }
+        
+    }
+}
