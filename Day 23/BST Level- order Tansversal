@@ -1,0 +1,15 @@
+void levelOrder(Node* root){
+  //Write your code here{
+    Node *q[100];
+    int f=0,r=0;
+    q[++r]=root;
+    while(f!=r)
+    {
+        Node* cn=q[++f];
+        printf("%d ",cn->data);
+        if(cn->left)
+            q[++r]=cn->left;
+        if(cn->right)
+            q[++r]=cn->right;
+    }
+}
