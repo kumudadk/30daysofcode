@@ -1,0 +1,40 @@
+Node* insert(Node*, int);
+Node* removeDuplicates(Node *head){
+    int flag = 0;
+    Node *hashtable = NULL, *thash, *traverse, *remove;
+    traverse = head;
+    while(traverse->next!=NULL)
+    {
+        if(hashtable == NULL)
+        {
+            hashtable = insert(hashtable, traverse->data);
+            continue;
+        }
+        else
+        {
+            thash = hashtable;
+            while(thash!=NULL)
+            {
+                if(thash->data == traverse->next->data)
+                {
+                    flag = 1;
+                    break;
+                }
+                thash = thash->next;
+            }
+            if(flag == 1)
+            {
+                remove = traverse->next;
+                traverse->next = traverse->next->next;
+                free(remove);
+                flag = 0;
+                continue;
+            }
+            else
+                hashtable = insert(hashtable, traverse->next->data);
+        }
+        traverse = traverse->next;
+    }
+
+    return head;
+}
