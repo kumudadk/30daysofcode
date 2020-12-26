@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+char* isPrime(int num)
+{
+    // If either num is less than 2 or number is even
+    // Return Not prime
+    if (num < 2 || (num > 2 && num % 2 == 0))
+        return "Not prime";
+
+    // Calculate the range to traverse, based on:
+    // A number is not prime if it is divisible by
+    // a number less or equal to the square root of the number
+    const int range = ceil(sqrt(num));
+    for (int i = 3; i <= range; i++)
+    {
+        if (num % i == 0)
+            return "Not prime";
+    }
+
+    return "Prime";
+}
+
+int main() {
+    int cases;
+    // Storing test cases
+    scanf("%d", &cases);
+
+    // While test cases remain
+    while(cases--)
+    {
+        int n;
+        scanf("%d", &n);
+
+        // Call the isPrime func and print the output
+        printf("%s\n", isPrime(n));
+    }
+    return 0;
+}
