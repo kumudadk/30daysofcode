@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define MAXNAME 21
+#define MAXMAIL 51
+
+int cmp_str(const void *a, const void *b) {
+  const char **ia = (const char **)a;
+  const char **ib = (const char **)b;
+  return strcmp(*ia, *ib);
+}
+
+int main(){
+  int N, i = 0, j;
+  char *firstName, *emailID, *mail, **gmailnames;
+  scanf("%d",&N);
+  gmailnames = (char **) malloc(N*sizeof(char *));
+  
+  while (N--) {
+    firstName = (char *)malloc(MAXNAME * sizeof(char));
+    emailID = (char *)malloc(MAXMAIL * sizeof(char));
+    scanf("%s %s", firstName, emailID);
+    
+    for (mail = emailID; *mail != '@'; ++mail) 
+      ;
+    if (strcmp(mail, "@gmail.com") == 0) {
+      gmailnames[i] = (char *) malloc(MAXNAME*sizeof(char));
+      strcpy(gmailnames[i++], firstName);
+    }
+    free(firstName);
+    free(emailID);
+  }
+  
+  qsort(gmailnames, i, sizeof(char *), cmp_str);
+  for (j = 0; j < i; ++j) {
+    printf("%s\n", gmailnames[j]);
+    free(gmailnames[j]);
+  }
+  free(gmailnames);
+  return 0;
+}
